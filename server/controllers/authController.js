@@ -89,7 +89,7 @@ const JWT = require("jsonwebtoken");
     }
     
    
-    const token =await JWT.sign({ _id: user._id }, process.env.SECRET_TOKEN, { expiresIn: '30d' });
+    const token =await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
     if (!token) {
       return res.status(403).json({ message: "JWT must be provided" });
@@ -245,8 +245,81 @@ const getOrderController=async(req,res)=>{
   }
 };
 
+// Middleman Registration Controller
+const registerMiddlemanController = async (req, res) => {
+  try {
+    const { name, email, password, phonenumber, address, answer, location } = req.body;
+    
+    // Validation
+    if (!name) {
+      return res.send({ error: "Name is Required" });
+    }
+    if (!email) {
+      return res.send({ error: "Email is Required" });
+    }
+    if (!password) {
+      return res.send({ error: "Password is Required" });
+    }
+    if (!phonenumber) {
+      return res.send({ error: "Phone number is Required" });
+    }
+    if (!address) {
+      return res.send({ error: "Address is Required" });
+    }
+    if (!answer) {
+      return res.send({ error: "Answer is Required" });
+    }
+    if (!location) {
+      return res.send({ error: "Location is Required for Middleman" });
+    }
+
+    // Check existing user
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(200).send({
+        success: false,
+        message: "Already Registered, please login",
+      });
+    }
+
+    // Hash password
+    const hashedPassword = await hashPassword(password);
+
+    // Create middleman with role 2
+    const middleman = await new userModel({
+      name,
+      email,
+      phonenumber,
+      address,
+      password: hashedPassword,
+      answer,
+      location,
+      role: 2  // Middleman role
+    }).save();
+
+    res.status(201).send({
+      success: true,
+      message: "Middleman Registered Successfully",
+      user: {
+        _id: middleman._id,
+        name: middleman.name,
+        email: middleman.email,
+        role: middleman.role,
+        location: middleman.location
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in Middleman Registration",
+      error,
+    });
+  }
+};
+
 
 module.exports={registerController,loginController,
   testController,ForgotPasswordController,updateProfileController,
-  getOrderController  ,getAllOrdersController,orderStatusController}
-
+  getOrderController  ,getAllOrdersController,orderStatusController,
+  registerMiddlemanController}

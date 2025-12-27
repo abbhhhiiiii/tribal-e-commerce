@@ -4,7 +4,8 @@ const {registerController,loginController,
       testController,ForgotPasswordController,updateProfileController,
       getOrderController,
       orderStatusController,
-      getAllOrdersController}  = require("../controllers/authController.js");
+      getAllOrdersController,
+      registerMiddlemanController}  = require("../controllers/authController.js");
 
 const { isAdmin, requireSignIn, isMiddleman } =require("../middlewares/authmiddleware.js");
 
@@ -49,5 +50,7 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 // order status update
 router.put("/order-status/:orderId", requireSignIn,isAdmin, orderStatusController);
 
+// Middleman Registration
+router.post("/register-middleman", registerMiddlemanController);
 
 module.exports = router;

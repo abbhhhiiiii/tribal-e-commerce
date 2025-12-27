@@ -8,7 +8,7 @@ const requireSignIn = async (req, res, next) => {
     if (!token) {
       return res.status(401).send({ message: "Token must be provided" });
     }
-    const decoded = JWT.verify(token, process.env.SECRET_TOKEN);
+    const decoded = JWT.verify(token, process.env.JWT_SECRET);
     req.user = decoded; 
     next(); 
 
