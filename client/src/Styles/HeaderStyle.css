@@ -1,0 +1,249 @@
+
+  .navbar {
+    position: sticky; /* stick to top when scrolling */
+    top: 0;
+    z-index: 2000;
+    background: linear-gradient(to right, #8e44ad, #3498db);
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    overflow: visible; /* allow dropdowns to overflow outside the navbar */
+  }
+  
+  .navbar:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
+  }
+  
+  /* Navbar brand (logo) */
+  .navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-brand:hover {
+    color: #ff7e5f; 
+  }
+  
+  /* Navbar items */
+  .nav-item {
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-item:hover {
+    color: #ff7e5f; 
+    transform: scale(1.05);
+  }
+  
+ 
+  .navbar-nav .nav-link {
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2); 
+    color: #ff7e5f; 
+  }
+  
+
+  .search-input-container form {
+    position: relative;
+  }
+  
+  .search-input-container input {
+    background: rgba(255, 255, 255, 0.15); 
+    border-radius: 30px;
+    padding: 8px 15px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .search-input-container input:focus {
+    background: rgba(255, 255, 255, 0.2); 
+    border-color: #ff7e5f;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+  }
+  
+  .search-input-container button {
+    background: linear-gradient(to right, #3498db, #8e44ad); 
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input-container button:hover {
+    background: linear-gradient(to right, #8e44ad, #3498db);
+    transform: scale(1.05);
+  }
+  
+  /* Voice Assistant Button */
+  .voice-assistent-button {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    border-radius: 30px;
+    padding: 8px 20px;
+    border: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .voice-assistent-button:hover {
+    background: linear-gradient(to right, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+  }
+  
+  
+  /* Ensure dropdown menus are positioned and visible above other content */
+  /* Target both nav-item dropdowns and generic dropdown containers */
+  .nav-item .dropdown-menu,
+  .dropdown .dropdown-menu {
+    position: absolute; /* required for bootstrap dropdown placement */
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 3000; /* above other UI */
+    background: #ffffff; /* solid white for best contrast */
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    padding: 6px 0;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* When Bootstrap adds .show class, make the dropdown visible */
+  .nav-item .dropdown-menu.show,
+  .dropdown .dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Desktop: also show dropdown on hover for better UX */
+  @media (hover: hover) and (min-width: 768px) {
+    .nav-item.dropdown:hover > .dropdown-menu,
+    .dropdown:hover > .dropdown-menu {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+  
+  .nav-item .dropdown-menu .nav-link,
+  .nav-item .dropdown-menu .dropdown-item,
+  .dropdown .dropdown-menu .dropdown-item {
+    color: #333;
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: block;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .nav-item .dropdown-menu .nav-link:hover,
+  .nav-item .dropdown-menu .dropdown-item:hover,
+  .dropdown .dropdown-menu .dropdown-item:hover {
+    background: rgba(243, 115, 84, 0.08);
+    color: #F37254;
+  }
+  
+  /* Cart Badge */
+  .ant-badge-count {
+    background-color: #ff7e5f;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 123, 95, 0.5);
+  }
+  
+  
+  .navbar-toggler {
+    border-color: #ff7e5f;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #ff7e5f;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .navbar-nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .navbar-nav .nav-link {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar-nav .nav-link {
+      font-size: 1rem;
+    }
+  
+    .navbar-toggler {
+      font-size: 1.2rem;
+    }
+  }
+  /* Logo container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 3rem; 
+    font-weight: 800; 
+    color: #2d2d2d; 
+    text-transform: uppercase; 
+    letter-spacing: 5px; 
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    padding: 10px 20px;
+    border-radius: 10px; 
+    background: linear-gradient(145deg, #ffffff, #f2f2f2); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+  
+  
+  .logo-container img {
+    width: 50px; 
+    height: auto;
+    margin-right: 20px; 
+    transition: transform 0.3s ease; 
+  }
+  
+  
+  .logo-container:hover {
+    color: #f57c00; 
+    text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4); 
+    background: linear-gradient(145deg, #f57c00, #ffa726);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3); 
+  }
+
+  .logo-container img:hover {
+    transform: rotate(15deg); 
+  }
+  
+  

@@ -1,0 +1,41 @@
+
+/* Global layout reset for sticky footer
+   Ensure root and layout container fill viewport and footer is last element
+ */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensures footer can be pushed to bottom */
+}
+
+.main-content {
+  flex: 1 0 auto; /* grow to fill available space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent accidental large bottom margins on the last child inside main content */
+.main-content > *:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+footer {
+  background-color: #181b1e;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
